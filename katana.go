@@ -84,13 +84,13 @@ func saveKatanaToFile(fileName string, katana *Katana) error {
 	return nil
 }
 
-func printLines(katana *Katana) {
+func (item *Katana) printLines() {
 	fmt.Println()
-	fmt.Printf("Lines (%d):\n", katana.Lines.Count)
+	fmt.Printf("Lines (%d):\n", item.Lines.Count)
 	fmt.Println("-----------")
 	n := 0
-	for i := 0; i < katana.Lines.Count; i++ {
-		fmt.Println(katana.Lines.Values[i])
+	for i := 0; i < item.Lines.Count; i++ {
+		fmt.Println(item.Lines.Values[i])
 		n++
 		if n%5 == 0 {
 			fmt.Println()
@@ -98,13 +98,13 @@ func printLines(katana *Katana) {
 	}
 }
 
-func printColumns(katana *Katana) {
+func (item *Katana) printColumns() {
 	fmt.Println()
-	fmt.Printf("Columns (%d):\n", katana.Columns.Count)
+	fmt.Printf("Columns (%d):\n", item.Columns.Count)
 	fmt.Println("-----------")
 	n := 0
-	for i := 0; i < katana.Columns.Count; i++ {
-		fmt.Println(katana.Columns.Values[i])
+	for i := 0; i < item.Columns.Count; i++ {
+		fmt.Println(item.Columns.Values[i])
 		n++
 		if n%5 == 0 {
 			fmt.Println()
@@ -113,14 +113,14 @@ func printColumns(katana *Katana) {
 
 }
 
-func printBoard(katana *Katana) {
+func (item *Katana) printBoard() {
 	fmt.Println()
-	fmt.Printf("Board (%d x %d):\n", katana.Columns.Count, katana.Lines.Count)
+	fmt.Printf("Board (%d x %d):\n", item.Columns.Count, item.Lines.Count)
 	fmt.Println("----------------")
 
 	fmt.Print("  _")
 	n := 0
-	for i := 0; i < katana.Columns.Count; i++ {
+	for i := 0; i < item.Columns.Count; i++ {
 		n++
 		if n%5 == 0 || n == 1 {
 			fmt.Printf("%2d", n)
@@ -131,7 +131,7 @@ func printBoard(katana *Katana) {
 	fmt.Println()
 
 	n = 0
-	for i := 0; i < katana.Lines.Count; i++ {
+	for i := 0; i < item.Lines.Count; i++ {
 		n++
 		if n%5 == 0 || n == 1 {
 			fmt.Printf("%2d|", n)
@@ -139,9 +139,9 @@ func printBoard(katana *Katana) {
 			fmt.Print("  |")
 		}
 
-		for j := 0; j < katana.Columns.Count; j++ {
+		for j := 0; j < item.Columns.Count; j++ {
 
-			if katana.Board.Values[i][j] {
+			if item.Board.Values[i][j] {
 				fmt.Print("#|")
 			} else {
 				fmt.Print("_|")
@@ -152,8 +152,8 @@ func printBoard(katana *Katana) {
 	}
 }
 
-func printKatana(katana *Katana) {
-	printColumns(katana)
-	printLines(katana)
-	printBoard(katana)
+func (item *Katana) printKatana() {
+	item.printColumns()
+	item.printLines()
+	item.printBoard()
 }

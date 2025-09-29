@@ -23,9 +23,5 @@ func main() {
 	saveKatanaToFile("qqq.json", katana)
 	kk, _ := loadKatanaFromFile("qqq-25x25.json")
 
-	fmt.Println(kk)
-
-	printKatana(katana)
-	printKatana(kk)
-
+	kk.printKatana()
 }
