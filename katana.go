@@ -36,9 +36,9 @@ func newKatana(x, y int) (*Katana, error) {
 	item.Columns.Count = x
 	item.Lines.Count = y
 
-	item.Board.Values = make([][]bool, item.Columns.Count)
-	for i := 0; i < item.Columns.Count; i++ {
-		item.Board.Values[i] = make([]bool, item.Lines.Count)
+	item.Board.Values = make([][]bool, item.Lines.Count)
+	for i := 0; i < item.Lines.Count; i++ {
+		item.Board.Values[i] = make([]bool, item.Columns.Count)
 	}
 
 	item.Columns.Values = make([][]int, item.Columns.Count)
@@ -82,4 +82,78 @@ func saveKatanaToFile(fileName string, katana *Katana) error {
 	}
 
 	return nil
+}
+
+func printLines(katana *Katana) {
+	fmt.Println()
+	fmt.Printf("Lines (%d):\n", katana.Lines.Count)
+	fmt.Println("-----------")
+	n := 0
+	for i := 0; i < katana.Lines.Count; i++ {
+		fmt.Println(katana.Lines.Values[i])
+		n++
+		if n%5 == 0 {
+			fmt.Println()
+		}
+	}
+}
+
+func printColumns(katana *Katana) {
+	fmt.Println()
+	fmt.Printf("Columns (%d):\n", katana.Columns.Count)
+	fmt.Println("-----------")
+	n := 0
+	for i := 0; i < katana.Columns.Count; i++ {
+		fmt.Println(katana.Columns.Values[i])
+		n++
+		if n%5 == 0 {
+			fmt.Println()
+		}
+	}
+
+}
+
+func printBoard(katana *Katana) {
+	fmt.Println()
+	fmt.Printf("Board (%d x %d):\n", katana.Columns.Count, katana.Lines.Count)
+	fmt.Println("----------------")
+
+	fmt.Print("  _")
+	n := 0
+	for i := 0; i < katana.Columns.Count; i++ {
+		n++
+		if n%5 == 0 || n == 1 {
+			fmt.Printf("%2d", n)
+		} else {
+			fmt.Print("__")
+		}
+	}
+	fmt.Println()
+
+	n = 0
+	for i := 0; i < katana.Lines.Count; i++ {
+		n++
+		if n%5 == 0 || n == 1 {
+			fmt.Printf("%2d|", n)
+		} else {
+			fmt.Print("  |")
+		}
+
+		for j := 0; j < katana.Columns.Count; j++ {
+
+			if katana.Board.Values[i][j] {
+				fmt.Print("#|")
+			} else {
+				fmt.Print("_|")
+			}
+
+		}
+		fmt.Println()
+	}
+}
+
+func printKatana(katana *Katana) {
+	printColumns(katana)
+	printLines(katana)
+	printBoard(katana)
 }
