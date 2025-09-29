@@ -23,5 +23,6 @@ func main() {
 	saveKatanaToFile("qqq.json", katana)
 	kk, _ := loadKatanaFromFile("qqq-25x25.json")
 
+	kk.init()
 	kk.printKatana()
 }
