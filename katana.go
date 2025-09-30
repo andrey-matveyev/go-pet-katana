@@ -50,7 +50,6 @@ func (item *Katana) printColumns() {
 			fmt.Println()
 		}
 	}
-
 }
 
 func (item *Katana) printBoard() {
@@ -80,13 +79,11 @@ func (item *Katana) printBoard() {
 		}
 
 		for j := 0; j < item.Columns.Count; j++ {
-
 			if item.Board.Values[i][j] {
 				fmt.Print("#|")
 			} else {
 				fmt.Print("_|")
 			}
-
 		}
 		fmt.Println()
 	}
@@ -116,4 +113,27 @@ func (item *Katana) init() {
 			n++
 		}
 	}
+}
+
+func (item *Katana) checkColumns() bool {
+	for i := 0; i < item.Columns.Count; i++ {
+		n := 0
+		number := 0
+
+		for _, value := range item.Board.Values[i] {
+			if value {
+				number++
+			} else {
+				if number != 0 && number != item.Columns.Values[i][n] {
+					return false
+				}
+				n++
+				number = 0
+			}
+		}
+		if number != 0 && number != item.Columns.Values[i][n] {
+			return false
+		}
+	}
+	return true
 }

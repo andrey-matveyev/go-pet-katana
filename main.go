@@ -1,11 +1,7 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
-	katana, err := newKatana(25, 25)
+	/*katana, err := newKatana(25, 25)
 	if err != nil {
 		fmt.Printf("Error: %v", err)
 		return
@@ -25,4 +21,14 @@ func main() {
 
 	kk.init()
 	kk.printKatana()
+	fmt.Println(kk.checkColumns())
+	*/
+	//dd, _ := newData(25, 25)
+	//saveDataToFile("dd25.json", dd)
+	dd, _ := loadDataFromFile("dd25.json")
+	dd.printRows()
+	dd.printCols()
+
+	ss, _ := newKatana1(dd)
+	ss.printKatana()
 }
